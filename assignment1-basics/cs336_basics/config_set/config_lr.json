@@ -1,0 +1,92 @@
+[
+    {
+        "model_config": {
+            "d_model" : 512,
+            "num_heads" : 16,
+            "d_ff" : 1344,
+            "vocab_size" : 10000,
+            "context_length" : 256,
+            "num_layers" : 4,
+            "rope_theta" : 10000.0
+        },
+        "optimizer_config": {
+            "lr_max": 1e-4,
+            "lr_min": 0,
+            "warmup_iters": 2000,
+            "cosine_cycle_iters": 18000,
+            "weight_decay": 0.001
+        },
+        "train_config": {
+            "batch_size": 64,
+            "valid_batch_size": 128,
+            "clip_grad_norm": 1.0,
+            "max_steps": 20000,
+            "max_seq_len": 256,
+            "log_step": 10,
+            "valid_step": 50,
+            "save_step": 20000,
+            "save_path": "cs336_basics/checkpoint"
+        },
+        "train_name": "BS_64"
+    },
+    {
+        "model_config": {
+            "d_model" : 512,
+            "num_heads" : 16,
+            "d_ff" : 1344,
+            "vocab_size" : 10000,
+            "context_length" : 256,
+            "num_layers" : 4,
+            "rope_theta" : 10000.0
+        },
+        "optimizer_config": {
+            "lr_max": 1e-4,
+            "lr_min": 0,
+            "warmup_iters": 4000,
+            "cosine_cycle_iters": 36000,
+            "weight_decay": 0.001
+        },
+        "train_config": {
+            "batch_size": 128,
+            "valid_batch_size": 128,
+            "clip_grad_norm": 1.0,
+            "max_steps": 40000,
+            "max_seq_len": 256,
+            "log_step": 10,
+            "valid_step": 50,
+            "save_step": 40000,
+            "save_path": "cs336_basics/checkpoint"
+        },
+        "train_name": "BS_32"
+    },
+    {
+        "model_config": {
+            "d_model" : 512,
+            "num_heads" : 16,
+            "d_ff" : 1344,
+            "vocab_size" : 10000,
+            "context_length" : 256,
+            "num_layers" : 4,
+            "rope_theta" : 10000.0
+        },
+        "optimizer_config": {
+            "lr_max": 1e-4,
+            "lr_min": 0,
+            "warmup_iters": 8000,
+            "cosine_cycle_iters": 72000,
+            "weight_decay": 0.001
+        },
+        "train_config": {
+            "batch_size": 128,
+            "valid_batch_size": 128,
+            "clip_grad_norm": 1.0,
+            "max_steps": 80000,
+            "max_seq_len": 256,
+            "log_step": 10,
+            "valid_step": 50,
+            "save_step": 80000,
+            "save_path": "cs336_basics/checkpoint"
+        },
+        "train_name": "BS_16"
+    }
+]
