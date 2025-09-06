@@ -43,7 +43,7 @@ def cal_minhash(
     return minhash
 
 
-INPUT_DIRECTORY = "./data/cc_wet/wet_filtered"
+INPUT_DIRECTORY = "./data/cc_wet/tmp"
 OUTPUT_DIRECTORY = "./data/cc_wet/wet_deduplication"
 
 def process_single_file(input_path: str, seeds):
@@ -81,7 +81,7 @@ for future in tqdm(
 
 
 # union duplicattion
-fa = range(len(minhashes))
+fa = list(range(len(minhashes)))
 
 def _find(x):
     if x!=fa[x]: fa[x]=_find(fa[x])
@@ -120,15 +120,13 @@ for x in range(len(minhashes)):
 if not os.path.exists(OUTPUT_DIRECTORY):
     os.mkdir(OUTPUT_DIRECTORY)
 
-sorted(candidate, key="input_path")
-old_output_path = ""
-save_documents = []
+
+save_documents = {}
 for x in tqdm(candidate.keys()):
     doc = minhashes[x]
     output_path = os.path.join(OUTPUT_DIRECTORY, os.path.basename(doc["input_path"]))
-    if old_output_path!="" and output_path != old_output_path:
-        with open(output_path, "w") as of:
-            json.dump(save_documents, of)
-    save_documents.append(doc["text"])
-    old_output_path = output_path
+    save_documents[output_path] = save_documents.get(output_path, []) + [doc["text"]]
     
+for output_path, doc in save_documents.items():
+        with open(output_path, "w") as of:
+            json.dump(doc, of)
